@@ -13,6 +13,8 @@ import javax.validation.constraints.NotNull;
 @Builder
 public class BoardRequest {
 
+    private Long boardId;
+
     @NotBlank(message = "제목을 입력해주세요")
     private String title;
 

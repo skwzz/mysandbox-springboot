@@ -6,6 +6,7 @@ import com.kidol.service.BoardService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
@@ -23,19 +24,31 @@ public class BoardController {
 
     @ApiOperation(value = "게시글 전체조회")
     @GetMapping("/board")
-    public List<BoardResponse> readBoard(){
-        return boardService.findAll();
+    public List<BoardResponse> readBoardList(){
+        return boardService.readBoardList();
     }
 
-    @ApiOperation(value = "게시글 단건조회 (by boardId)")
+    @ApiOperation(value = "게시글 상세조회")
     @GetMapping("/board/{boardId}")
     public BoardResponse readBoardDetail(@PathVariable("boardId") Long boardId) throws Exception {
-        return boardService.find(boardId);
+        return boardService.readBoardDetail(boardId);
     }
 
     @ApiOperation(value = "게시글 등록")
     @PostMapping("/board")
     public Long createBoard(@RequestBody @Valid BoardRequest boardRequest){
-        return boardService.save(boardRequest);
+        return boardService.createBoard(boardRequest);
+    }
+
+    @ApiOperation(value="게시글 수정")
+    @PutMapping("/board")
+    public BoardResponse updateBoard(@RequestBody @Valid BoardRequest boardRequest){
+        return boardService.updateBoard(boardRequest);
+    }
+
+    @ApiOperation(value = "게시글 삭제")
+    @DeleteMapping("/board/{boardId}")
+    public void deleteBoard(@PathVariable("boardId") Long boardId){
+        boardService.deleteBoard(boardId);
     }
 }

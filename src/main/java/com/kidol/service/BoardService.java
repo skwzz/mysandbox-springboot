@@ -8,29 +8,43 @@ import com.kidol.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @RequiredArgsConstructor
+@Transactional
 @Service
 public class BoardService {
 
     private final BoardMapper boardMapper = Mappers.getMapper(BoardMapper.class);
 
-    private final BoardRepository sampleRepository;
+    private final BoardRepository boardRepository;
 
-    public List<BoardResponse> findAll(){
-        return boardMapper.toResponse(sampleRepository.findAll());
+    @Transactional(readOnly = true)
+    public List<BoardResponse> readBoardList(){
+        return boardMapper.toResponse(boardRepository.findAll());
     }
 
-    public BoardResponse find(Long boardId) throws Exception {
-        Board board = sampleRepository.findById(boardId).orElseThrow(() -> new Exception("NOT FOUND EXCEPTION"));
+    @Transactional(readOnly = true)
+    public BoardResponse readBoardDetail(Long boardId) throws Exception {
+        Board board = boardRepository.findById(boardId).orElseThrow(() -> new Exception("NOT FOUND EXCEPTION"));
         return boardMapper.toResponse(board);
     }
 
-    public Long save(BoardRequest boardRequest) {
+    public Long createBoard(BoardRequest boardRequest) {
         Board board = boardMapper.toEntity(boardRequest);
-        sampleRepository.save(board);
+        boardRepository.save(board);
         return board.getBoardId();
+    }
+
+    public BoardResponse updateBoard(BoardRequest boardRequest) {
+        Board board = boardMapper.toEntity(boardRequest);
+        boardRepository.save(board);
+        return boardMapper.toResponse(board);
+    }
+
+    public void deleteBoard(Long boardId) {
+        boardRepository.deleteById(boardId);
     }
 }
