@@ -1,0 +1,9 @@
+INSERT INTO BOARD(title, content) VALUES('제목1', '내용1');
+INSERT INTO BOARD(title, content) VALUES('제목2', '내용2');
+INSERT INTO BOARD(title, content) VALUES('제목3', '내용3');
+INSERT INTO BOARD(title, content) VALUES('제목4', '내용4');
+INSERT INTO BOARD(title, content) VALUES('제목5', '내용5');
+INSERT INTO BOARD(title, content) VALUES('제목6', '내용6');
+INSERT INTO BOARD(title, content) VALUES('제목7', '내용7');
+INSERT INTO BOARD(title, content) VALUES('제목8', '내용8');
+INSERT INTO BOARD(title, content) VALUES('제목9', '내용9');
