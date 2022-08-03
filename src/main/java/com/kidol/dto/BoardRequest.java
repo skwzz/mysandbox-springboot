@@ -2,6 +2,9 @@ package com.kidol.dto;
 
 import lombok.*;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 @ToString
 @Getter
 @Setter
@@ -10,6 +13,9 @@ import lombok.*;
 @Builder
 public class BoardRequest {
 
+    @NotBlank(message = "제목을 입력해주세요")
     private String title;
+
+    @NotBlank(message = "내용을 입력해주세요")
     private String content;
 }

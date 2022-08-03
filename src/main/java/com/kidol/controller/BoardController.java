@@ -6,8 +6,12 @@ import com.kidol.service.BoardService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Slf4j
@@ -31,7 +35,7 @@ public class BoardController {
 
     @ApiOperation(value = "게시글 등록")
     @PostMapping("/board")
-    public Long createBoard(@RequestBody BoardRequest boardRequest){
+    public Long createBoard(@RequestBody @Valid BoardRequest boardRequest){
         return boardService.save(boardRequest);
     }
 }
