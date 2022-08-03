@@ -21,6 +21,8 @@ spring:
     init:
       mode: always
       data-locations: classpath:sql/data.sql
-
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
 server:
   port: 8889
