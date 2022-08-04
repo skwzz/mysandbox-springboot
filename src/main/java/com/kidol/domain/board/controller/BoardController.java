@@ -1,15 +1,11 @@
-package com.kidol.controller;
+package com.kidol.domain.board.controller;
 
-import com.kidol.dto.BoardRequest;
-import com.kidol.dto.BoardResponse;
-import com.kidol.service.BoardService;
+import com.kidol.domain.board.dto.BoardRequest;
+import com.kidol.domain.board.dto.BoardResponse;
+import com.kidol.domain.board.service.BoardService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;

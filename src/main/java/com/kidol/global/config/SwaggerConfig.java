@@ -1,4 +1,4 @@
-package com.kidol.config;
+package com.kidol.global.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,7 +1,4 @@
-package com.kidol.mapstruct;
-
-import com.kidol.dto.BoardResponse;
-import com.kidol.entity.Board;
+package com.kidol.domain.board.mapstruct;
 
 import java.util.List;
 

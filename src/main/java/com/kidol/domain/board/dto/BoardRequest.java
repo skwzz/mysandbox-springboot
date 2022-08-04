@@ -1,4 +1,4 @@
-package com.kidol.dto;
+package com.kidol.domain.board.dto;
 
 import lombok.*;
 

@@ -1,10 +1,10 @@
-package com.kidol.service;
+package com.kidol.domain.board.service;
 
-import com.kidol.dto.BoardRequest;
-import com.kidol.dto.BoardResponse;
-import com.kidol.entity.Board;
-import com.kidol.mapstruct.BoardMapper;
-import com.kidol.repository.BoardRepository;
+import com.kidol.domain.board.dto.BoardRequest;
+import com.kidol.domain.board.dto.BoardResponse;
+import com.kidol.domain.board.entity.Board;
+import com.kidol.domain.board.mapstruct.BoardMapper;
+import com.kidol.domain.board.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Service;
