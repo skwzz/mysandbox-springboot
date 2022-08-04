@@ -1,4 +1,4 @@
-package com.kidol.domain.board.mapstruct;
+package com.kidol.domain.common.mapstruct;
 
 import com.kidol.domain.board.dto.BoardRequest;
 import com.kidol.domain.board.dto.BoardResponse;

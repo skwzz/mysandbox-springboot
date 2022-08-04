@@ -1,5 +1,6 @@
 package com.kidol.domain.member.controller;
 
+import com.kidol.domain.member.dto.MemberResponse;
 import com.kidol.domain.member.entity.Member;
 import com.kidol.domain.member.service.MemberService;
 import io.swagger.annotations.ApiOperation;
@@ -19,7 +20,7 @@ public class MemberController {
 
     @ApiOperation(value = "멤버 전체조회")
     @GetMapping("/member")
-    public Page<Member> readMemberList(Pageable pageable){
+    public Page<MemberResponse> readMemberList(Pageable pageable){
         return memberService.readMemberList(pageable);
     }
 }
