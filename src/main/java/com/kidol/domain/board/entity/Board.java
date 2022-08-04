@@ -1,7 +1,7 @@
 package com.kidol.domain.board.entity;
 
 import com.kidol.domain.common.entity.BaseEntity;
-import com.kidol.domain.user.entity.Member;
+import com.kidol.domain.member.entity.Member;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,6 +1,9 @@
 INSERT INTO MEMBER(email, name, create_date, modify_date) VALUES ('gildong@google.com', '길동', '2022-08-01 00:00:00', '2022-08-01 00:00:00');
 INSERT INTO MEMBER(email, name, create_date, modify_date) VALUES ('chulsoo@google.com', '철수', '2022-08-01 00:00:00', '2022-08-01 00:00:00');
 INSERT INTO MEMBER(email, name, create_date, modify_date) VALUES ('younghee@google.com', '영희', '2022-08-01 00:00:00', '2022-08-01 00:00:00');
+INSERT INTO MEMBER(email, name, create_date, modify_date) VALUES ('dodook@google.com', '도둑', '2022-08-01 00:00:00', '2022-08-01 00:00:00');
+INSERT INTO MEMBER(email, name, create_date, modify_date) VALUES ('kyungchal@google.com', '경찰', '2022-08-01 00:00:00', '2022-08-01 00:00:00');
+INSERT INTO MEMBER(email, name, create_date, modify_date) VALUES ('kangaji@google.com', '강아지', '2022-08-01 00:00:00', '2022-08-01 00:00:00');
 
 INSERT INTO BOARD(title, content, create_date, modify_date, member_id) VALUES('제목0', '내용0', '2022-08-01 00:00:00', '2022-08-01 00:00:00', 1);
 INSERT INTO BOARD(title, content, create_date, modify_date, member_id) VALUES('제목1', '내용1', '2022-08-01 00:00:00', '2022-08-01 00:00:00', 1);
