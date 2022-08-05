@@ -1,5 +1,6 @@
 package com.kidol.domain.board.dto;
 
+import com.kidol.domain.member.entity.Member;
 import lombok.*;
 
 @ToString
@@ -14,4 +15,7 @@ public class BoardResponse {
     private String title;
     private String content;
     private Long memberId;
+    private String email;
+    private String name;
+
 }

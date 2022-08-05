@@ -20,13 +20,14 @@ public class Board extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "board_id")
     private Long boardId;
 
     private String title;
 
     private String content;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = Member.class, fetch = FetchType.LAZY)
     @JoinColumn(name="member_id")
     private Member member;
 

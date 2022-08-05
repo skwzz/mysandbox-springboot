@@ -7,6 +7,9 @@ import com.kidol.domain.common.mapstruct.BoardMapper;
 import com.kidol.domain.board.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.mapstruct.factory.Mappers;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,8 +25,10 @@ public class BoardService {
     private final BoardRepository boardRepository;
 
     @Transactional(readOnly = true)
-    public List<BoardResponse> readBoardList(){
-        return boardMapper.toResponse(boardRepository.findAll());
+    public Page<BoardResponse> readBoardList(Pageable pageable){
+        Page<Board> page = boardRepository.findAll(pageable);
+        List<BoardResponse> list = boardMapper.toResponse(boardRepository.findAll(pageable).getContent());
+        return new PageImpl<>(list, pageable, page.getTotalElements());
     }
 
     @Transactional(readOnly = true)

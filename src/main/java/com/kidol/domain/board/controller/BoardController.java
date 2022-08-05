@@ -6,6 +6,8 @@ import com.kidol.domain.board.service.BoardService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -20,8 +22,8 @@ public class BoardController {
 
     @ApiOperation(value = "게시글 전체조회")
     @GetMapping("/board")
-    public List<BoardResponse> readBoardList(){
-        return boardService.readBoardList();
+    public Page<BoardResponse> readBoardList(Pageable pageable){
+        return boardService.readBoardList(pageable);
     }
 
     @ApiOperation(value = "게시글 상세조회")
