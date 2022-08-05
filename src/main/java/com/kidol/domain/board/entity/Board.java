@@ -1,5 +1,6 @@
 package com.kidol.domain.board.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.kidol.domain.common.entity.BaseEntity;
 import com.kidol.domain.member.entity.Member;
 import lombok.AllArgsConstructor;
@@ -20,14 +21,13 @@ public class Board extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "board_id")
     private Long boardId;
 
     private String title;
 
     private String content;
 
-    @ManyToOne(targetEntity = Member.class, fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = Member.class)
     @JoinColumn(name="member_id")
     private Member member;
 

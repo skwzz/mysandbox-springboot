@@ -8,9 +8,7 @@ import java.util.List;
 
 public interface BoardRepository extends JpaRepository<Board, Long> {
 
-    /*
     @Override
     @EntityGraph(attributePaths = {"member"}, type = EntityGraph.EntityGraphType.LOAD)
     List<Board> findAll();
-    */
 }

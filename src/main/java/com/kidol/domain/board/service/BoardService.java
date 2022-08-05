@@ -3,6 +3,7 @@ package com.kidol.domain.board.service;
 import com.kidol.domain.board.dto.BoardRequest;
 import com.kidol.domain.board.dto.BoardResponse;
 import com.kidol.domain.board.entity.Board;
+import com.kidol.domain.board.repository.BoardQuerydslRepository;
 import com.kidol.domain.common.mapstruct.BoardMapper;
 import com.kidol.domain.board.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -23,12 +25,44 @@ public class BoardService {
     private final BoardMapper boardMapper = Mappers.getMapper(BoardMapper.class);
 
     private final BoardRepository boardRepository;
+    private final BoardQuerydslRepository boardQuerydslRepository;
 
     @Transactional(readOnly = true)
     public Page<BoardResponse> readBoardList(Pageable pageable){
         Page<Board> page = boardRepository.findAll(pageable);
-        List<BoardResponse> list = boardMapper.toResponse(boardRepository.findAll(pageable).getContent());
+        List<BoardResponse> list = toResponse(boardRepository.findAll(pageable).getContent());
         return new PageImpl<>(list, pageable, page.getTotalElements());
+    }
+
+    private List<BoardResponse> toResponse(List<Board> boards){
+        if(boards == null){
+            return null;
+        }
+
+        List<BoardResponse> list = new ArrayList<>();
+        for(Board board : boards){
+            BoardResponse br = BoardResponse.builder()
+                    .boardId(board.getBoardId())
+                    .title(board.getTitle())
+                    .content(board.getContent())
+                    .memberId(board.getMember().getMemberId())
+                    .email(board.getMember().getEmail())
+                    .name(board.getMember().getName())
+                    .build();
+            list.add(br);
+        }
+
+        return list;
+    }
+
+    @Transactional(readOnly = true)
+    public Page<Board> readBoardList_entity(Pageable pageable) {
+        return boardRepository.findAll(pageable);
+    }
+
+    @Transactional(readOnly = true)
+    public List<BoardResponse> readBoardList_querydsl(Pageable pageable) {
+        return boardQuerydslRepository.findAll(pageable);
     }
 
     @Transactional(readOnly = true)
@@ -40,6 +74,7 @@ public class BoardService {
     public Long createBoard(BoardRequest boardRequest) {
         Board board = boardMapper.toEntity(boardRequest);
         boardRepository.save(board);
+        //return board.getBoardId();
         return board.getBoardId();
     }
 
@@ -52,4 +87,6 @@ public class BoardService {
     public void deleteBoard(Long boardId) {
         boardRepository.deleteById(boardId);
     }
+
+
 }

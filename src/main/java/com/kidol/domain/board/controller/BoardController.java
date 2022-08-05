@@ -2,6 +2,7 @@ package com.kidol.domain.board.controller;
 
 import com.kidol.domain.board.dto.BoardRequest;
 import com.kidol.domain.board.dto.BoardResponse;
+import com.kidol.domain.board.entity.Board;
 import com.kidol.domain.board.service.BoardService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +25,18 @@ public class BoardController {
     @GetMapping("/board")
     public Page<BoardResponse> readBoardList(Pageable pageable){
         return boardService.readBoardList(pageable);
+    }
+
+    @ApiOperation(value = "게시글 전체조회 (엔티티반환)")
+    @GetMapping("/board-entity")
+    public Page<Board> readBoardList_entity(Pageable pageable){
+        return boardService.readBoardList_entity(pageable);
+    }
+
+    @ApiOperation(value = "게시글 전체조회 (querydsl)")
+    @GetMapping("/board-querydsl")
+    public List<BoardResponse> readBoardList_querydsl(Pageable pageable){
+        return boardService.readBoardList_querydsl(pageable);
     }
 
     @ApiOperation(value = "게시글 상세조회")
