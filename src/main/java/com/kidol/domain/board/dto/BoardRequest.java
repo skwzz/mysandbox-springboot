@@ -3,7 +3,6 @@ package com.kidol.domain.board.dto;
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 @ToString
 @Getter

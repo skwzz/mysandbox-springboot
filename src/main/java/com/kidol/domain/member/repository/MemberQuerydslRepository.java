@@ -24,6 +24,8 @@ public class MemberQuerydslRepository{
                         ,member.memberId
                         ,member.email
                         ,member.name
+                        ,member.createDate
+                        ,member.modifyDate
                 ))
                 .from(member)
                 .fetch();
