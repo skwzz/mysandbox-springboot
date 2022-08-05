@@ -11,6 +11,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @Slf4j
 @RequiredArgsConstructor
 @RestController
@@ -22,5 +24,11 @@ public class MemberController {
     @GetMapping("/member")
     public Page<MemberResponse> readMemberList(Pageable pageable){
         return memberService.readMemberList(pageable);
+    }
+
+    @ApiOperation(value = "멤버 전체조회 querydsl 테스트")
+    @GetMapping("/memberQuerydsl1")
+    public List<MemberResponse> memberQuerydsl1(){
+        return memberService.memberQuerydsl1();
     }
 }
