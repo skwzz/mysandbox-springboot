@@ -1,10 +1,13 @@
 package com.kidol.domain.board.dto;
 
-import com.kidol.domain.member.entity.Member;
 import lombok.*;
 
 @Builder
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class BoardResponse {
 
     private Long boardId;

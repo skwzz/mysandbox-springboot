@@ -20,6 +20,7 @@ public class ExceptionController {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, String>> methodArgumentNotValidExceptionHandler(MethodArgumentNotValidException e, HttpServletRequest request, BindingResult bindingResult){
+        log.error("Occurred Exception...");
         List<FieldError> fieldErrorList = bindingResult.getFieldErrors();
         Map<String, String> hm = new HashMap<>();
         hm.put("message", e.getMessage());
