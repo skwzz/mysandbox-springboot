@@ -11,6 +11,7 @@ import org.mapstruct.factory.Mappers;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,6 +26,7 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
     private final MemberQuerydslRepository memberQuerydslRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Transactional(readOnly = true)
     public Page<MemberResponse> readMemberList(Pageable pageable){
@@ -39,6 +41,7 @@ public class MemberService {
 
     public Member createMember(MemberRequest memberRequest) {
         Member member = memberMapper.toEntity(memberRequest);
+        member.setPassword(passwordEncoder.encode(member.getPassword()));
         return memberRepository.save(member);
     }
 }
