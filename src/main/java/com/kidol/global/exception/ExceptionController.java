@@ -19,11 +19,10 @@ import java.util.Map;
 public class ExceptionController {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<Map<String, String>> methodArgumentNotValidExceptionHandler(MethodArgumentNotValidException e, HttpServletRequest request, BindingResult bindingResult){
-        log.error("Occurred Exception...");
-        List<FieldError> fieldErrorList = bindingResult.getFieldErrors();
-        Map<String, String> hm = new HashMap<>();
-        hm.put("message", e.getMessage());
-        return new ResponseEntity<Map<String, String>>(hm, HttpStatus.BAD_REQUEST);
+    public ResponseEntity<ErrorResponse> methodArgumentNotValidExceptionHandler(MethodArgumentNotValidException e, HttpServletRequest request, BindingResult bindingResult){
+        log.error("Occurred MethodArgumentNotValidException...");
+        List<FieldError> fieldErrors = bindingResult.getFieldErrors();
+        ErrorResponse errorResponse = new ErrorResponse(false, "", HttpStatus.BAD_REQUEST.value(), fieldErrors);
+        return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 }

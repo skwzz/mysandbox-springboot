@@ -21,14 +21,15 @@ public class Member extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "member_id")
     private Long memberId;
 
+    @NotBlank
     @Email
     private String email;
 
     @NotBlank
     private String name;
 
+    @NotBlank
     private String password;
 }

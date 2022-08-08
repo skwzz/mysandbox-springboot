@@ -1,6 +1,5 @@
 package com.kidol.domain.board.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.kidol.domain.common.entity.BaseEntity;
 import com.kidol.domain.member.entity.Member;
 import lombok.AllArgsConstructor;

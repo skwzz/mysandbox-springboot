@@ -1,6 +1,7 @@
 package com.kidol.domain.member.service;
 
 import com.kidol.domain.common.mapstruct.MemberMapper;
+import com.kidol.domain.member.dto.MemberRequest;
 import com.kidol.domain.member.dto.MemberResponse;
 import com.kidol.domain.member.entity.Member;
 import com.kidol.domain.member.repository.MemberQuerydslRepository;
@@ -34,5 +35,10 @@ public class MemberService {
     @Transactional(readOnly = true)
     public List<MemberResponse> memberQuerydsl1() {
         return memberQuerydslRepository.memberQuerydsl1();
+    }
+
+    public Member createMember(MemberRequest memberRequest) {
+        Member member = memberMapper.toEntity(memberRequest);
+        return memberRepository.save(member);
     }
 }
