@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 seconds">
+
+    <springProperty scope="context" name="LOG_LEVEL" source="logging.level.root"/>
+    <property name="LOG_PATH" value="D:/springboottest_log"/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS}[%-5level] : %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="INFO_LOG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${LOG_PATH}/info/app.log</File>
+        <!--<prudent>true</prudent>-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/info/app.log.%d{yyyyMMdd}.%i.log</fileNamePattern>
+            <maxHistory>60</maxHistory>
+            <maxFileSize>100MB</maxFileSize>
+        </rollingPolicy>
+        <encoder>
+            <charset>UTF-8</charset>
+            <Pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] %highlight([%-5level]) %-40.40logger{39} - %msg%n%throwable</Pattern>
+        </encoder>
+    </appender>
+
+    <appender name="ERROR_LOG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${LOG_PATH}/error/app.log</File>
+        <!--<prudent>true</prudent>-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/error/app.log.%d{yyyyMMdd}.%i.log</fileNamePattern>
+            <maxHistory>60</maxHistory>
+            <maxFileSize>100MB</maxFileSize>
+        </rollingPolicy>
+        <encoder>
+            <charset>UTF-8</charset>
+            <Pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%-5level] %-40.40logger{39} - %msg%n%throwable</Pattern>
+        </encoder>
+    </appender>
+
+    <root level="${LOG_LEVEL}">
+        <appender-ref ref="STDOUT"/>
+        <!--<appender-ref ref="INFO_LOG_FILE"/>-->
+    </root>
+</configuration>
